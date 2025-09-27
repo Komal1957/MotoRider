@@ -65,7 +65,7 @@ const HeroSection = () => {
       <div className="relative z-10 h-full flex items-center">
         <div className="container px-4 md:px-6">
           <div className="max-w-3xl animate-slide-up">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-6 leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-6 leading-tight" >
               Your Ride, Your <span className="bg-gradient-futuristic bg-clip-text text-transparent">Marketplace</span>
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-8 font-body">

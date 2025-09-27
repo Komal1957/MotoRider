@@ -9,7 +9,6 @@ import {
   Shield, 
   MapPin, 
   Headphones, 
-  Gift,
   Calendar,
   CreditCard,
   Users
@@ -140,20 +139,27 @@ const StudentBenefits = () => {
           <h4 className="text-lg font-semibold">Who's Eligible?</h4>
         </div>
         
+        {/* White text with Yellow hover buttons */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-          {eligibleInstitutions.map((institution, index) => (
-            <motion.div
-              key={institution}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.7 + index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <Badge variant="outline" className="w-full justify-center py-2 hover:bg-accent/10 transition-colors">
+          {eligibleInstitutions.map((institution, index) => {
+            const isLastTwo = index >= eligibleInstitutions.length - 2;
+            return (
+              <motion.button
+                key={institution}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.7 + index * 0.1 }}
+                whileHover={{ scale: 1.08 }}
+                className={`px-6 py-2 rounded-full border transition-all duration-300
+                  ${isLastTwo 
+                    ? "border-white text-black hover:text-yellow-400 hover:border-yellow-400" 
+                    : "border-white text-white hover:text-yellow-400 hover:border-yellow-400"
+                  }`}
+              >
                 {institution}
-              </Badge>
-            </motion.div>
-          ))}
+              </motion.button>
+            );
+          })}
         </div>
         
         <div className="mt-4 p-3 bg-accent/5 rounded-lg">
