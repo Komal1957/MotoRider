@@ -54,7 +54,7 @@ const Navbar = () => {
           to="/"
           className="text-2xl font-bold font-heading bg-gradient-to-r from-[#FFD700] to-[#B8860B] bg-clip-text text-transparent"
         >
-          MotoRider
+          Vahan Bazar
         </Link>
       </motion.div>
 
@@ -128,10 +128,10 @@ const Navbar = () => {
         <Button
           variant="hero"
           onClick={() => setShowRent(true)}
-          className="relative overflow-hidden group bg-gradient-to-r from-[#FFD700] to-[#B8860B] text-black font-semibold hover:opacity-90"
+          className="w-40 relative overflow-hidden group bg-gradient-to-r from-[#FFD700] to-[#B8860B] text-black font-semibold hover:opacity-90"
         >
           Rent Now
-          <span className="absolute top-0 right-0 -mt-1 -mr-1 bg-black text-[#FFD700] text-xs px-1 rounded-full">
+          <span className="absolute top-1 right-0 -mt-1 -mr-1 bg-black text-[#FFD700] text-xs px-4 py-1 flex items-center rounded-full w-32 justify-center">
             Student 20% OFF
           </span>
         </Button>
