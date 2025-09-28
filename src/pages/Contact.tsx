@@ -103,7 +103,7 @@ const Contact = () => {
               </Button>
               <Button variant="outline" size="lg" className="bg-gold text-white hover:bg-yellow-500 flex items-center gap-2">
                 <MessageSquare className="w-5 h-5" />
-                Start Live Chat
+                Book Appointment
               </Button>
             </div>
           </motion.div>

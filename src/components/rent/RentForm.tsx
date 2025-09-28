@@ -266,7 +266,7 @@ const RentForm = ({ onBack }: RentFormProps) => {
                         id="studentId"
                         value={formData.studentId}
                         onChange={(e) => setFormData({...formData, studentId: e.target.value})}
-                        placeholder="Enter your student ID"
+                        placeholder="Enter your student ID" 
                       />
                     </div>
                     
@@ -560,7 +560,7 @@ const RentForm = ({ onBack }: RentFormProps) => {
       {/* Navigation Buttons */}
       <div className="flex justify-between">
         <Button
-          variant="outline"
+          variant="hero"
           onClick={prevStep}
           disabled={currentStep === 1}
           className="flex items-center gap-2"

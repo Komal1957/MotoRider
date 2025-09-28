@@ -40,7 +40,7 @@ const TrustSection = () => {
       <div className="container px-4 md:px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Why Choose <span className="bg-gradient-futuristic bg-clip-text text-transparent">Vahan Bazar</span>?
+            Why Choose <span className="text-4xl font-extrabold bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-700 bg-clip-text text-transparent">Vahan Bazar</span>?
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Join thousands of satisfied customers who trust us for their two-wheeler needs

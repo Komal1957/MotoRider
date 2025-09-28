@@ -31,8 +31,8 @@ const SellSection = () => {
       <div className="container px-4 md:px-6 relative z-10">
         {/* Title */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Sell Your <span className="text-primary">Bike</span>
+          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-700 bg-clip-text text-transparent">
+            Sell Your <span className="text-primary text-4xl font-extrabold bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-700 bg-clip-text text-transparent">Bike</span>
           </h2>
           <p className="text-xl text-muted max-w-2xl mx-auto">
             Get the best price for your bike in just 3 simple steps

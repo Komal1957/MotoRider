@@ -152,7 +152,7 @@ const StudentBenefits = () => {
                 whileHover={{ scale: 1.08 }}
                 className={`px-6 py-2 rounded-full border transition-all duration-300
                   ${isLastTwo 
-                    ? "border-white text-black hover:text-yellow-400 hover:border-yellow-400" 
+                    ? "border-white text-white hover:text-yellow-400 hover:border-yellow-400" 
                     : "border-white text-white hover:text-yellow-400 hover:border-yellow-400"
                   }`}
               >

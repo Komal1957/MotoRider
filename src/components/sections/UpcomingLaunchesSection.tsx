@@ -49,7 +49,7 @@ const UpcomingLaunchesSection = () => {
         <div className="flex items-center justify-between mb-12">
           <div>
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-              Upcoming <span className="bg-gradient-futuristic bg-clip-text text-transparent">Launches</span>
+              Upcoming <span className="text-4xl md:text-5xl font-heading font-bold mb-4 font-extrabold bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-700 bg-clip-text text-transparent">Launches</span>
             </h2>
             <p className="text-xl text-muted-foreground">
               Be the first to know about the latest releases
