@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Card, CardContent} from '../components/ui/card';
+import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
+
+import fBike from '@/assets/final_bike1.png';
+import fBike1 from '@/assets/bajaj.jpeg';
+import fBike2 from '@/assets/ather.jpeg';
+import fBike3 from '@/assets/tvs.jpeg';
+import fBike4 from '@/assets/bajj.jpeg';
+import fBike5 from '@/assets/hero.jpeg';
+import { Link, useNavigate } from "react-router-dom";
+
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { 
   Bike, 
@@ -22,6 +31,7 @@ import {
 const Products = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
   const categories = [
     { id: 'all', name: 'All Vehicles', icon: Bike, count: 1250 },
@@ -31,6 +41,7 @@ const Products = () => {
     { id: 'used', name: 'Used Bikes', icon: Clock, count: 100 }
   ];
 
+  // NOTE: image fields use the actual imported variables (no quotes)
   const products = [
     {
       id: 1,
@@ -42,7 +53,7 @@ const Products = () => {
       fuelType: 'Petrol',
       rating: 4.5,
       reviews: 1250,
-      image: '/api/placeholder/300/200',
+      image: fBike,
       dealer: 'Honda Showroom Central',
       location: 'Mumbai',
       isNew: true,
@@ -58,7 +69,7 @@ const Products = () => {
       fuelType: 'Petrol',
       rating: 4.3,
       reviews: 890,
-      image: '/api/placeholder/300/200',
+      image: fBike1,
       dealer: 'Royal Enfield Store',
       location: 'Delhi',
       isNew: true
@@ -73,7 +84,7 @@ const Products = () => {
       fuelType: 'Electric',
       rating: 4.6,
       reviews: 420,
-      image: '/api/placeholder/300/200',
+      image: fBike2,
       dealer: 'Ather Space',
       location: 'Bangalore',
       isNew: true,
@@ -89,7 +100,7 @@ const Products = () => {
       fuelType: 'Petrol',
       rating: 4.2,
       reviews: 650,
-      image: '/api/placeholder/300/200',
+      image: fBike3,
       dealer: 'TVS Dealership',
       location: 'Chennai',
       isNew: true
@@ -105,7 +116,7 @@ const Products = () => {
       fuelType: 'Petrol',
       rating: 4.0,
       reviews: 340,
-      image: '/api/placeholder/300/200',
+      image: fBike4,
       dealer: 'Certified Pre-owned',
       location: 'Pune',
       year: 2021,
@@ -121,7 +132,7 @@ const Products = () => {
       fuelType: 'Petrol',
       rating: 4.4,
       reviews: 2100,
-      image: '/api/placeholder/300/200',
+      image: fBike5,
       dealer: 'Hero MotoCorp',
       location: 'Gurgaon',
       isNew: true
@@ -272,10 +283,10 @@ const Products = () => {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: index * 0.03 }}
                   whileHover={{ 
                     y: -10,
-                    boxShadow: "0 20px 40px -10px rgba(0, 123, 255, 0.3)"
+                    boxShadow: "0 20px 40px -10px rgba(0, 123, 255, 0.12)"
                   }}
                   className="group"
                 >
@@ -283,10 +294,17 @@ const Products = () => {
                     {/* Image and Badges */}
                     <div className="relative">
                       <div className="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <Bike className="w-16 h-16 text-gray-400" />
-                        </div>
                         
+                        {/* SINGLE IMAGE RENDER — uses the actual imported image variable */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <img 
+                            src={product.image as any} 
+                            alt={product.name}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+
                         {/* Badges */}
                         <div className="absolute top-3 left-3 flex flex-col gap-2">
                           {product.isNew && (
@@ -375,9 +393,17 @@ const Products = () => {
                         </div>
                         
                         <div className="flex gap-2">
-                          <Button variant="outline" size="sm">
-                            View Details
-                          </Button>
+                          {/* Inside card */}
+                          <Link to={`/products/${product.id}`}>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => navigate(`/products/${product.id}`)}
+                            >
+                              View Details
+                            </Button>
+                          </Link>
+
                           <Button variant="hero" size="sm">
                             Contact
                           </Button>
