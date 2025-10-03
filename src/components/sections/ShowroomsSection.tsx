@@ -152,10 +152,7 @@ const ShowroomsSection = () => {
             </h3>
 
             {dealers.map((dealer, index) => (
-              <Card
-                key={index}
-                className="bg-background border border-muted hover:border-accent transition-all rounded-2xl"
-              >
+              <Card key={index} className="bg-background bg-yellow-100 border border-muted hover:border-accent transition-all rounded-2xl">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div>
@@ -191,9 +188,7 @@ const ShowroomsSection = () => {
                     >
                       Get Directions
                     </Button>
-                    <Button
-                    variant="outline"
-                     className="flex-1 border-muted text-foreground hover:border-accent hover:text-accent">
+                    <Button variant="outline" className="flex-1 border-muted text-foreground hover:border-accent hover:text-accent">
                       Book Test Ride
                     </Button>
                   </div>

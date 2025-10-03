@@ -66,7 +66,7 @@ const HeroSection = () => {
         <div className="container px-4 md:px-6">
           <div className="max-w-3xl animate-slide-up">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-6 leading-tight" >
-              Your Ride, Your <span className="bg-gradient-futuristic bg-clip-text text-transparent">Marketplace</span>
+              Your Ride, Your <span className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-700 bg-clip-text text-transparent">Marketplace</span>
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-8 font-body">
               Discover the future of two-wheelers. Buy, sell, and explore bikes, scooters, and EVs with ease.

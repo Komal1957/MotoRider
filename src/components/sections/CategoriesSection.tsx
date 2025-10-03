@@ -12,7 +12,7 @@ const CategoriesSection = () => {
     },
     {
       icon: Car,
-      title: "Scooters", 
+      title: "Scooters",
       description: "Perfect for city commuting",
       color: "accent"
     },
@@ -31,18 +31,24 @@ const CategoriesSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
-      <div className="container px-4 md:px-6">
+    <section className="py-20 bg-background bg-gradient-to-b from-black via-gray-900 to-yellow-500 ...">
+      <div className="container px-4 md:px-6 ">
         {/* Section Heading */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Explore{" "}
-            <span className="bg-gradient-futuristic bg-clip-text text-transparent">
+            <span className="bg-yellow-500 bg-clip-text text-transparent">
+              Explore{" "}
+            </span>
+
+            <span className="bg-yellow-400 bg-clip-text text-transparent">
               Categories
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Find your perfect ride from our diverse collection of two-wheelers
+            <span className="bg-yellow-400 bg-clip-text text-transparent">
+              Find your perfect ride from our diverse collection of two-wheelers
+            </span>
+
           </p>
         </div>
 

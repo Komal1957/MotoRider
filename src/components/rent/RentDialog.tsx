@@ -54,20 +54,21 @@ const RentDialog = ({ open, onOpenChange }: RentDialogProps) => {
                 <Button
                   variant="outline"
                   onClick={() => onOpenChange(false)}
-                  className="px-8 bg-yellow-500 text-black border border-yellow-600 hover:bg-yellow-600 hover:text-white"
+                  className="px-8 bg-golden text-white hover:bg-yellow-500 "
                 >
                   Maybe Later
                 </Button>
 
-
-                <Button
-                  onClick={() => setCurrentStep('form')}
-                  className="px-8 bg-yellow-500 text-black border font-semibold hover:bg-yellow-600"
-                >
-                  Start Booking
-                </Button>
-
-           
+                {/* Golden CTA */}
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button
+                  variant='outline'
+                    onClick={() => setCurrentStep('form')}
+                    className="px-8 bg-golden text-white hover:bg-yellow-500 hover:text-black"
+                  >
+                    Start Booking
+                  </Button>
+                </motion.div>
               </div>
       </motion.div>
       ) : (

@@ -30,7 +30,7 @@ const SmartToolsSection = () => {
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Smart <span className="bg-gradient-futuristic bg-clip-text text-transparent">Tools</span>
+             <span className="text-4xl font-bold bg-gradient-to-r from-black via-gray-800 to-yellow-500 bg-clip-text text-transparent">Smart Tools</span>
           </h2>
           <p className="text-lg text-muted-foreground">
             Make informed decisions with our advanced tools

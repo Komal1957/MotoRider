@@ -314,59 +314,64 @@ const RentForm = ({ onBack }: RentFormProps) => {
               value={formData.graduationYear}
               onValueChange={(value) => setFormData({ ...formData, graduationYear: value })}
             >
-              <SelectTrigger className="bg-black border border-golden/60 text-white focus:border-golden focus:ring-1 focus:ring-golden">
-                <SelectValue placeholder="Select year" />
-              </SelectTrigger>
-              <SelectContent className="bg-black border border-golden text-white">
-                <SelectItem value="2024" className="hover:bg-golden hover:text-black">2024</SelectItem>
-                <SelectItem value="2025" className="hover:bg-golden hover:text-black">2025</SelectItem>
-                <SelectItem value="2026" className="hover:bg-golden hover:text-black">2026</SelectItem>
-                <SelectItem value="2027" className="hover:bg-golden hover:text-black">2027</SelectItem>
-                <SelectItem value="2028" className="hover:bg-golden hover:text-black">2028</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
-        {/* Student Benefits Section */}
-        <motion.div
-          className="p-4 border border-golden/60 rounded-lg bg-black/70"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
-          {/* Heading in golden solid */}
-          <h4 className="font-semibold text-yellow-500 mb-3 flex items-center gap-2 text-lg">
-            <CheckCircle className="w-4 h-4 text-golden" />
-            Your Student Benefits
-          </h4>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-300">
-            {/* Gold Badges with black text for strong contrast */}
-            <div className="flex items-center gap-2">
-              <Badge className="bg-yellow-500 text-black font-bold px-2 py-1">20% OFF</Badge>
-              <span>Monthly rentals</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Badge className="bg-yellow-500 text-black font-bold px-2 py-1">15% OFF</Badge>
-              <span>Weekly rentals</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Badge className="bg-yellow-500 text-black font-bold px-2 py-1">FREE</Badge>
-              <span>Safety gear</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Badge className="bg-yellow-500 text-black font-bold px-2 py-1">FREE</Badge>
-              <span>Campus pickup</span>
-            </div>
-          </div>
-        </motion.div>
-      </CardContent>
-    </Card>
-  </motion.div>
-)}
-
-
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <GraduationCap className="w-5 h-5" />
+                    Student Verification
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="studentId">Student ID *</Label>
+                      <Input
+                        id="studentId"
+                        value={formData.studentId}
+                        onChange={(e) => setFormData({...formData, studentId: e.target.value})}
+                        placeholder="Enter your student ID" 
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="institution">Institution *</Label>
+                      <Input
+                        id="institution"
+                        value={formData.institution}
+                        onChange={(e) => setFormData({...formData, institution: e.target.value})}
+                        placeholder="College/University name"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="course">Course/Degree *</Label>
+                      <Input
+                        id="course"
+                        value={formData.course}
+                        onChange={(e) => setFormData({...formData, course: e.target.value})}
+                        placeholder="e.g., B.Tech Computer Science"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="graduation">Expected Graduation *</Label>
+                      <Select
+                        value={formData.graduationYear}
+                        onValueChange={(value) => setFormData({...formData, graduationYear: value})}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select year" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="2024">2024</SelectItem>
+                          <SelectItem value="2025">2025</SelectItem>
+                          <SelectItem value="2026">2026</SelectItem>
+                          <SelectItem value="2027">2027</SelectItem>
+                          <SelectItem value="2028">2028</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
 
 
           {/* Step 3: Rental Details */}
@@ -584,7 +589,12 @@ const RentForm = ({ onBack }: RentFormProps) => {
 
       {/* Navigation */}
       <div className="flex justify-between">
-        <Button variant="outline" onClick={prevStep} disabled={currentStep === 1} className="flex items-center gap-2 px-8 bg-yellow-500 text-black border font-semibold hover:bg-yellow-600">
+        <Button
+          variant="hero"
+          onClick={prevStep}
+          disabled={currentStep === 1}
+          className="flex items-center gap-2"
+        >
           <ArrowLeft className="w-4 h-4" />
           Previous
         </Button>
