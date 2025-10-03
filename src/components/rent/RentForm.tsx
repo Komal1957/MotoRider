@@ -10,17 +10,12 @@ import { Checkbox } from '../ui/checkbox';
 import { Calendar } from "../ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { format } from 'date-fns';
-import { 
-  ArrowLeft, 
-  ArrowRight, 
-  User, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  GraduationCap, 
+import {
+  ArrowLeft,
+  ArrowRight,
+  User,
+  GraduationCap,
   Calendar as CalendarIcon,
-  Clock,
-  IndianRupee,
   CheckCircle,
   Bike
 } from 'lucide-react';
@@ -39,22 +34,22 @@ const RentForm = ({ onBack }: RentFormProps) => {
     email: '',
     phone: '',
     address: '',
-    
+    emergencyContact: '',
+    licenseNumber: '',
+    aadhaarNumber: '',
+    hasLicense: false,
+
     // Student Info
     studentId: '',
     institution: '',
     course: '',
     graduationYear: '',
-    
+
     // Rental Details
     bikeType: '',
     duration: '',
     pickupDate: undefined as Date | undefined,
     pickupLocation: '',
-    
-    // Additional
-    hasLicense: false,
-    emergencyContact: '',
   });
 
   const steps = [
@@ -73,7 +68,7 @@ const RentForm = ({ onBack }: RentFormProps) => {
 
   const nextStep = () => {
     if (!isStudent && currentStep === 1) {
-      setCurrentStep(3); // Skip student details if not a student
+      setCurrentStep(3);
     } else if (currentStep < 4) {
       setCurrentStep(currentStep + 1);
     }
@@ -81,7 +76,7 @@ const RentForm = ({ onBack }: RentFormProps) => {
 
   const prevStep = () => {
     if (!isStudent && currentStep === 3) {
-      setCurrentStep(1); // Skip student details if not a student
+      setCurrentStep(1);
     } else if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
     }
@@ -101,25 +96,24 @@ const RentForm = ({ onBack }: RentFormProps) => {
           <ArrowLeft className="w-4 h-4" />
           Back to Benefits
         </Button>
-        
+
         <div className="flex items-center gap-2">
           {steps.map((step) => {
             const isActive = step.number === currentStep;
             const isCompleted = step.number < currentStep;
             const isSkipped = !isStudent && step.number === 2;
-            
+
             return (
               <motion.div
                 key={step.number}
-                className={`flex items-center gap-2 px-3 py-1 rounded-full text-sm ${
-                  isActive 
-                    ? 'bg-primary text-white' 
-                    : isCompleted 
-                    ? 'bg-primary/20 text-primary' 
-                    : isSkipped
-                    ? 'bg-muted text-muted-foreground opacity-50'
-                    : 'bg-muted text-muted-foreground'
-                }`}
+                className={`flex items-center gap-2 px-3 py-1 rounded-full text-sm ${isActive
+                    ? 'bg-primary text-white'
+                    : isCompleted
+                      ? 'bg-primary/20 text-primary'
+                      : isSkipped
+                        ? 'bg-muted text-muted-foreground opacity-50'
+                        : 'bg-muted text-muted-foreground'
+                  }`}
                 whileHover={{ scale: 1.05 }}
               >
                 <step.icon className="w-4 h-4" />
@@ -143,70 +137,97 @@ const RentForm = ({ onBack }: RentFormProps) => {
               exit="exit"
               transition={{ duration: 0.3 }}
             >
-              <Card>
+              <Card className="bg-black border border-golden text-white shadow-lg">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <User className="w-5 h-5" />
+                  <CardTitle className="flex items-center gap-2 bg-gradient-to-r from-golden to-yellow-500 bg-clip-text text-yellow-500">
+                    <User className="w-5 h-5 text-yellow-500" />
                     Personal Information
                   </CardTitle>
                 </CardHeader>
+
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Full Name *</Label>
+                      <Label htmlFor="name" className="text-golden">Full Name *</Label>
                       <Input
                         id="name"
                         value={formData.name}
-                        onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="Enter your full name"
+                        className="bg-black border border-golden/50 text-white placeholder-gray-400 focus:border-golden focus:ring-1 focus:ring-golden"
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email Address *</Label>
+                      <Label htmlFor="email" className="text-golden">Email Address *</Label>
                       <Input
                         id="email"
                         type="email"
                         value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="Enter your email"
+                        className="bg-black border border-golden/50 text-white placeholder-gray-400 focus:border-golden focus:ring-1 focus:ring-golden"
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number *</Label>
+                      <Label htmlFor="phone" className="text-golden">Phone Number *</Label>
                       <Input
                         id="phone"
                         type="tel"
                         value={formData.phone}
-                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="Enter your phone number"
+                        className="bg-black border border-golden/50 text-white placeholder-gray-400 focus:border-golden focus:ring-1 focus:ring-golden"
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
-                      <Label htmlFor="emergency">Emergency Contact</Label>
+                      <Label htmlFor="emergency" className="text-golden">Emergency Contact</Label>
                       <Input
                         id="emergency"
                         value={formData.emergencyContact}
-                        onChange={(e) => setFormData({...formData, emergencyContact: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, emergencyContact: e.target.value })}
                         placeholder="Emergency contact number"
+                        className="bg-black border border-golden/50 text-white placeholder-gray-400 focus:border-golden focus:ring-1 focus:ring-golden"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="licenseNumber" className="text-golden">License Number *</Label>
+                      <Input
+                        id="licenseNumber"
+                        value={formData.licenseNumber}
+                        onChange={(e) => setFormData({ ...formData, licenseNumber: e.target.value })}
+                        placeholder="Enter your license number"
+                        className="bg-black border border-golden/50 text-white placeholder-gray-400 focus:border-golden focus:ring-1 focus:ring-golden"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="aadhaarNumber" className="text-golden">Aadhaar Number *</Label>
+                      <Input
+                        id="aadhaarNumber"
+                        value={formData.aadhaarNumber}
+                        onChange={(e) => setFormData({ ...formData, aadhaarNumber: e.target.value })}
+                        placeholder="Enter your Aadhaar number"
+                        className="bg-black border border-golden/50 text-white placeholder-gray-400 focus:border-golden focus:ring-1 focus:ring-golden"
                       />
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2">
-                    <Label htmlFor="address">Address *</Label>
+                    <Label htmlFor="address" className="text-golden">Address *</Label>
                     <Input
                       id="address"
                       value={formData.address}
-                      onChange={(e) => setFormData({...formData, address: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                       placeholder="Enter your full address"
+                      className="bg-black border border-golden/50 text-white placeholder-gray-400 focus:border-golden focus:ring-1 focus:ring-golden"
                     />
                   </div>
-
                   {/* Student Status */}
-                  <motion.div 
+                  <motion.div
                     className="p-4 border rounded-lg bg-accent/5"
                     whileHover={{ scale: 1.02 }}
                   >
@@ -228,28 +249,70 @@ const RentForm = ({ onBack }: RentFormProps) => {
                     )}
                   </motion.div>
 
-                  <div className="flex items-center space-x-2">
-                    <Checkbox
-                      id="license"
-                      checked={formData.hasLicense}
-                      onCheckedChange={(checked) => setFormData({...formData, hasLicense: !!checked})}
-                    />
-                    <Label htmlFor="license">I have a valid driving license *</Label>
-                  </div>
                 </CardContent>
               </Card>
             </motion.div>
           )}
+   {/* Step 2: Student Details (only if student) */}
+{currentStep === 2 && isStudent && (
+  <motion.div
+    key="step2"
+    variants={stepVariants}
+    initial="enter"
+    animate="center"
+    exit="exit"
+    transition={{ duration: 0.3 }}
+  >
+    <Card className="bg-black border border-golden text-white shadow-lg">
+      <CardHeader>
+        {/* Heading with golden solid color (instead of gradient text) */}
+        <CardTitle className="flex items-center gap-2 text-yellow-500 font-bold text-xl">
+          <GraduationCap className="w-5 h-5 text-yellow-500" />
+          Student Verification
+        </CardTitle>
+      </CardHeader>
 
-          {/* Step 2: Student Details (only if student) */}
-          {currentStep === 2 && isStudent && (
-            <motion.div
-              key="step2"
-              variants={stepVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.3 }}
+      <CardContent className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Inputs same as before */}
+          <div className="space-y-2">
+            <Label htmlFor="studentId" className="text-golden">Student ID *</Label>
+            <Input
+              id="studentId"
+              value={formData.studentId}
+              onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
+              placeholder="Enter your student ID"
+              className="bg-black border border-golden/60 text-white placeholder-gray-400 focus:border-golden focus:ring-1 focus:ring-golden"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="institution" className="text-golden">Institution *</Label>
+            <Input
+              id="institution"
+              value={formData.institution}
+              onChange={(e) => setFormData({ ...formData, institution: e.target.value })}
+              placeholder="College/University name"
+              className="bg-black border border-golden/60 text-white placeholder-gray-400 focus:border-golden focus:ring-1 focus:ring-golden"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="course" className="text-golden">Course/Degree *</Label>
+            <Input
+              id="course"
+              value={formData.course}
+              onChange={(e) => setFormData({ ...formData, course: e.target.value })}
+              placeholder="e.g., B.Tech Computer Science"
+              className="bg-black border border-golden/60 text-white placeholder-gray-400 focus:border-golden focus:ring-1 focus:ring-golden"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="graduation" className="text-golden">Expected Graduation *</Label>
+            <Select
+              value={formData.graduationYear}
+              onValueChange={(value) => setFormData({ ...formData, graduationYear: value })}
             >
               <Card>
                 <CardHeader>
@@ -310,39 +373,6 @@ const RentForm = ({ onBack }: RentFormProps) => {
                     </div>
                   </div>
 
-                  <motion.div 
-                    className="p-4 border rounded-lg bg-primary/5"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    <h4 className="font-semibold text-primary mb-2 flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4" />
-                      Your Student Benefits
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
-                      <div className="flex items-center gap-2">
-                        <Badge variant="secondary" className="bg-accent/10 text-accent">20% OFF</Badge>
-                        <span>Monthly rentals</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Badge variant="secondary" className="bg-accent/10 text-accent">15% OFF</Badge>
-                        <span>Weekly rentals</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Badge variant="secondary" className="bg-primary/10 text-primary">FREE</Badge>
-                        <span>Safety gear</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Badge variant="secondary" className="bg-primary/10 text-primary">FREE</Badge>
-                        <span>Campus pickup</span>
-                      </div>
-                    </div>
-                  </motion.div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          )}
 
           {/* Step 3: Rental Details */}
           {currentStep === 3 && (
@@ -354,98 +384,125 @@ const RentForm = ({ onBack }: RentFormProps) => {
               exit="exit"
               transition={{ duration: 0.3 }}
             >
-              <Card>
+              <Card className="bg-black text-white border border-yellow-600/40">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Bike className="w-5 h-5" />
+                  <CardTitle className="flex items-center gap-2 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent">
+                    <Bike className="w-5 h-5 text-yellow-500" />
                     Rental Details
                   </CardTitle>
                 </CardHeader>
+
                 <CardContent className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Bike Type */}
                     <div className="space-y-2">
-                      <Label>Select Bike Type *</Label>
+                      <Label className="text-white">Select Bike Type *</Label>
                       <Select
                         value={formData.bikeType}
-                        onValueChange={(value) => setFormData({...formData, bikeType: value})}
+                        onValueChange={(value) => setFormData({ ...formData, bikeType: value })}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-black text-white border border-yellow-600/50 focus:ring-2 focus:ring-yellow-500">
                           <SelectValue placeholder="Choose your bike" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-black text-white border border-yellow-600/40">
                           {bikeOptions.map((option) => (
-                            <SelectItem key={option.value} value={option.value}>
+                            <SelectItem
+                              key={option.value}
+                              value={option.value}
+                              className="hover:bg-gradient-to-r hover:from-yellow-400 hover:to-yellow-600 hover:text-black"
+                            >
                               {option.label}
                             </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
                     </div>
-                    
+
+                    {/* Rental Duration */}
                     <div className="space-y-2">
-                      <Label>Rental Duration *</Label>
+                      <Label className="text-white">Rental Duration *</Label>
                       <Select
                         value={formData.duration}
-                        onValueChange={(value) => setFormData({...formData, duration: value})}
+                        onValueChange={(value) => setFormData({ ...formData, duration: value })}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-black text-white border border-yellow-600/50 focus:ring-2 focus:ring-yellow-500">
                           <SelectValue placeholder="Select duration" />
                         </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="daily">Daily (1-6 days)</SelectItem>
-                          <SelectItem value="weekly">Weekly (1-3 weeks)</SelectItem>
-                          <SelectItem value="monthly">Monthly (1+ months)</SelectItem>
+                        <SelectContent className="bg-black text-white border border-yellow-600/40">
+                          <SelectItem value="daily" className="hover:bg-gradient-to-r hover:from-yellow-400 hover:to-yellow-600 hover:text-black">
+                            Daily (1-6 days)
+                          </SelectItem>
+                          <SelectItem value="weekly" className="hover:bg-gradient-to-r hover:from-yellow-400 hover:to-yellow-600 hover:text-black">
+                            Weekly (1-3 weeks)
+                          </SelectItem>
+                          <SelectItem value="monthly" className="hover:bg-gradient-to-r hover:from-yellow-400 hover:to-yellow-600 hover:text-black">
+                            Monthly (1+ months)
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Pickup Date */}
                     <div className="space-y-2">
-                      <Label>Pickup Date *</Label>
+                      <Label className="text-white">Pickup Date *</Label>
                       <Popover>
                         <PopoverTrigger asChild>
                           <Button
                             variant="outline"
-                            className="w-full justify-start text-left font-normal"
+                            className="w-full justify-start text-left font-normal bg-black text-white border border-yellow-600/50 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-yellow-600 hover:text-black"
                           >
-                            <CalendarIcon className="mr-2 h-4 w-4" />
-                            {formData.pickupDate ? format(formData.pickupDate, "PPP") : "Pick a date"}
+                            <CalendarIcon className="mr-2 h-4 w-4 text-yellow-500" />
+                            {formData.pickupDate
+                              ? format(formData.pickupDate, "PPP")
+                              : "Pick a date"}
                           </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0">
+                        <PopoverContent className="w-auto p-0 bg-black text-white border border-yellow-600/40">
                           <Calendar
                             mode="single"
                             selected={formData.pickupDate}
-                            onSelect={(date) => setFormData({...formData, pickupDate: date})}
+                            onSelect={(date) => setFormData({ ...formData, pickupDate: date })}
                             initialFocus
                           />
                         </PopoverContent>
                       </Popover>
                     </div>
-                    
+
+                    {/* Pickup Location */}
                     <div className="space-y-2">
-                      <Label htmlFor="pickup">Pickup Location *</Label>
+                      <Label className="text-white">Pickup Location *</Label>
                       <Select
                         value={formData.pickupLocation}
-                        onValueChange={(value) => setFormData({...formData, pickupLocation: value})}
+                        onValueChange={(value) => setFormData({ ...formData, pickupLocation: value })}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-black text-white border border-yellow-600/50 focus:ring-2 focus:ring-yellow-500">
                           <SelectValue placeholder="Choose pickup location" />
                         </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="campus">Campus Pickup (Free)</SelectItem>
-                          <SelectItem value="showroom-central">Central Showroom</SelectItem>
-                          <SelectItem value="showroom-north">North Showroom</SelectItem>
-                          <SelectItem value="showroom-south">South Showroom</SelectItem>
-                          <SelectItem value="home">Home Delivery (+₹200)</SelectItem>
+                        <SelectContent className="bg-black text-white border border-yellow-600/40">
+                          <SelectItem value="campus" className="hover:bg-gradient-to-r hover:from-yellow-400 hover:to-yellow-600 hover:text-black">
+                            Campus Pickup (Free)
+                          </SelectItem>
+                          <SelectItem value="showroom-central" className="hover:bg-gradient-to-r hover:from-yellow-400 hover:to-yellow-600 hover:text-black">
+                            Central Showroom
+                          </SelectItem>
+                          <SelectItem value="showroom-north" className="hover:bg-gradient-to-r hover:from-yellow-400 hover:to-yellow-600 hover:text-black">
+                            North Showroom
+                          </SelectItem>
+                          <SelectItem value="showroom-south" className="hover:bg-gradient-to-r hover:from-yellow-400 hover:to-yellow-600 hover:text-black">
+                            South Showroom
+                          </SelectItem>
+                          <SelectItem value="home" className="hover:bg-gradient-to-r hover:from-yellow-400 hover:to-yellow-600 hover:text-black">
+                            Home Delivery (+₹200)
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                   </div>
 
                   {/* Live Pricing Calculator */}
-                  <PricingCalculator 
+                  <PricingCalculator
                     bikeType={formData.bikeType}
                     duration={formData.duration}
                     isStudent={isStudent}
@@ -468,17 +525,16 @@ const RentForm = ({ onBack }: RentFormProps) => {
             >
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5" />
+                  <CardTitle className="flex items-center gap-2 text-yellow-500">
+                    <CheckCircle className="w-5 h-5 text-yellow-500" />
                     Review & Confirm Booking
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    {/* Booking Summary */}
                     <div className="space-y-4">
                       <h4 className="font-semibold">Booking Summary</h4>
-                      
+
                       <div className="space-y-3 text-sm">
                         <div className="flex justify-between">
                           <span>Name:</span>
@@ -492,62 +548,36 @@ const RentForm = ({ onBack }: RentFormProps) => {
                           <span>Phone:</span>
                           <span className="font-medium">{formData.phone}</span>
                         </div>
+                        <div className="flex justify-between">
+                          <span>Emergency Contact:</span>
+                          <span className="font-medium">{formData.emergencyContact}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>License Number:</span>
+                          <span className="font-medium">{formData.licenseNumber}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Aadhaar Number:</span>
+                          <span className="font-medium">{formData.aadhaarNumber}</span>
+                        </div>
                         {isStudent && (
                           <div className="flex justify-between">
                             <span>Student ID:</span>
                             <span className="font-medium">{formData.studentId}</span>
                           </div>
                         )}
-                        <div className="flex justify-between">
-                          <span>Bike Type:</span>
-                          <span className="font-medium">
-                            {bikeOptions.find(b => b.value === formData.bikeType)?.label}
-                          </span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Duration:</span>
-                          <span className="font-medium capitalize">{formData.duration}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Pickup Date:</span>
-                          <span className="font-medium">
-                            {formData.pickupDate ? format(formData.pickupDate, "PPP") : "Not selected"}
-                          </span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Pickup Location:</span>
-                          <span className="font-medium capitalize">
-                            {formData.pickupLocation?.replace('-', ' ')}
-                          </span>
-                        </div>
                       </div>
                     </div>
 
-                    {/* Final Pricing */}
+                    {/* Pricing Calculator */}
                     <div className="space-y-4">
-                      <PricingCalculator 
+                      <PricingCalculator
                         bikeType={formData.bikeType}
                         duration={formData.duration}
                         isStudent={isStudent}
                         pickupLocation={formData.pickupLocation}
                         showDetailed={true}
                       />
-                    </div>
-                  </div>
-
-                  <div className="border-t pt-6">
-                    <div className="text-center">
-                      <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Button size="lg" variant="hero" className="px-12">
-                          Confirm Booking & Pay
-                        </Button>
-                      </motion.div>
-                      <p className="text-sm text-muted-foreground mt-2">
-                        You'll be redirected to secure payment gateway
-                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -557,7 +587,7 @@ const RentForm = ({ onBack }: RentFormProps) => {
         </AnimatePresence>
       </div>
 
-      {/* Navigation Buttons */}
+      {/* Navigation */}
       <div className="flex justify-between">
         <Button
           variant="hero"
@@ -568,13 +598,8 @@ const RentForm = ({ onBack }: RentFormProps) => {
           <ArrowLeft className="w-4 h-4" />
           Previous
         </Button>
-        
-        <Button
-          variant="hero"
-          onClick={nextStep}
-          disabled={currentStep === 4}
-          className="flex items-center gap-2"
-        >
+
+        <Button variant="hero" onClick={nextStep} disabled={currentStep === 4} className="flex items-center gap-2 px-8 bg-yellow-500 text-black border font-semibold hover:bg-yellow-600">
           Next
           <ArrowRight className="w-4 h-4" />
         </Button>

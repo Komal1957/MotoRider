@@ -19,8 +19,7 @@ const RentDialog = ({ open, onOpenChange }: RentDialogProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-black to-gray-900 text-gray-200 border border-golden/30 shadow-xl">
         <DialogHeader>
-          {/* Title with golden gradient */}
-          <DialogTitle className="text-center text-3xl font-heading bg-gradient-to-r from-golden to-yellow-500 bg-clip-text text-transparent">
+          <DialogTitle className="text-center text-3xl font-heading bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent">
             Rent Your Perfect Ride
           </DialogTitle>
 
@@ -71,21 +70,21 @@ const RentDialog = ({ open, onOpenChange }: RentDialogProps) => {
                   </Button>
                 </motion.div>
               </div>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="form"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <RentForm onBack={() => setCurrentStep('benefits')} />
-            </motion.div>
+      </motion.div>
+      ) : (
+      <motion.div
+        key="form"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        transition={{ duration: 0.3 }}
+      >
+        <RentForm onBack={() => setCurrentStep('benefits')} />
+      </motion.div>
           )}
-        </AnimatePresence>
-      </DialogContent>
-    </Dialog>
+    </AnimatePresence>
+      </DialogContent >
+    </Dialog >
   );
 };
 
